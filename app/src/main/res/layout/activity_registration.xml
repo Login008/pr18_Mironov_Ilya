@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/myblack"
+    android:orientation="vertical"
+    tools:context=".Authorization">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="329dp"
+        app:srcCompat="@drawable/reg" />
+    <EditText
+        android:id="@+id/editTextLogin"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        android:background="@drawable/corners_for_edit_text_view"
+        android:hint=" Введите логин"
+        android:inputType="text"
+        android:textColorHint="@color/et"
+        android:textColor="@color/et"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        android:background="@drawable/corners_for_edit_text_view"
+        android:hint=" Введите пароль"
+        android:inputType="textPassword"
+        android:textColorHint="@color/et"
+        android:textColor="@color/et"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"/>
+
+    <EditText
+        android:id="@+id/editTextCheckPass"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        android:background="@drawable/corners_for_edit_text_view"
+        android:hint=" Подтвердите пароль"
+        android:inputType="textPassword"
+        android:textColorHint="@color/et"
+        android:textColor="@color/et"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="340dp"
+        android:layout_height="40dp"
+        android:background="@drawable/corners_for_button"
+        android:text="Зарегистрироваться"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/orange"
+        android:onClick="Register"/>
+</LinearLayout>
