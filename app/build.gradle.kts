@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-    implementation("com.google.code.gson:gson:2.8.5")
+    implementation("com.google.code.gson:gson:2.10")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.appcompat:appcompat-resources:1.7.0")
     implementation("androidx.core:core-ktx:1.13.1")

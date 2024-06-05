@@ -12,38 +12,42 @@ import com.google.gson.stream.JsonReader
 
 class Authorization : AppCompatActivity() {
     private lateinit var pref: SharedPreferences
-        lateinit var login : EditText
-        lateinit var password : EditText
+    lateinit var login : EditText
+    lateinit var password : EditText
     private val MY_SETTINGS = "my_settings"
+    data class User(var pass: String)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_authorization)
         login = findViewById<EditText>(R.id.editTextLogin)
         password = findViewById<EditText>(R.id.editTextTextPassword)
+        pref = getSharedPreferences(MY_SETTINGS, MODE_PRIVATE)
     }
 
     fun SignIn(view: View) {
-        pref = getSharedPreferences(MY_SETTINGS, MODE_PRIVATE)
-        var pass = pref.getString("${login.text}", """{"login": "", "pass": ""}""")
-
-        data class User(var login: String, var pass: String)
-        val user : User = Gson().fromJson(pass, User::class.java)
-
         if (login.text.toString().isNotEmpty() and password.text.toString().isNotEmpty()) {
-            if (password.text.toString() == user.pass) {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
-            else
+
+
+            var pass = pref.getString("${login.text}", null)
+            var user: User
+            try {
+                user = Gson().fromJson(pass, User::class.java)
+            } catch (e:Exception)
             {
-                val alert = AlertDialog.Builder(this)
-                    .setTitle("Ошибка")
-                    .setMessage("Неверный логин или пароль")
-                    .setPositiveButton("Ok", null)
-                    .create()
-                    .show()
+                user = User("")
             }
-        }
+                if (password.text.toString() == user.pass) {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    val alert = AlertDialog.Builder(this)
+                        .setTitle("Ошибка")
+                        .setMessage("Неверный логин или пароль")
+                        .setPositiveButton("Ok", null)
+                        .create()
+                        .show()
+                }
+            }
         else
         {
             val alert = AlertDialog.Builder(this)

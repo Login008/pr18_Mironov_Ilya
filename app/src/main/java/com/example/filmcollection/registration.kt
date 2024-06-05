@@ -9,6 +9,8 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import com.google.gson.Gson
 
+data class User(var pass: String)
+
 class registration : AppCompatActivity() {
     private lateinit var pref: SharedPreferences
     lateinit var login : EditText
@@ -21,16 +23,16 @@ class registration : AppCompatActivity() {
         login = findViewById<EditText>(R.id.editTextLogin)
         password = findViewById<EditText>(R.id.editTextTextPassword)
         checkpass = findViewById<EditText>(R.id.editTextCheckPass)
+        pref = getSharedPreferences(MY_SETTINGS, MODE_PRIVATE)
     }
 
     fun Register(view: View) {
         if (login.text.toString().isNotEmpty() and password.text.toString().isNotEmpty() and checkpass.text.toString().isNotEmpty()) {
             if (password.text.toString() == checkpass.text.toString()) {
-                pref = getSharedPreferences(MY_SETTINGS, MODE_PRIVATE)
+
                 val ed = pref.edit()
 
-                data class User(var login: String, var pass: String)
-                var user = User(login.text.toString(), password.text.toString())
+                var user = User(password.text.toString())
                 var pass: String = Gson().toJson(user)
 
                 ed.putString("${login.text}", pass)
