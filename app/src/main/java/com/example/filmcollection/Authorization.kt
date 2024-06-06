@@ -22,6 +22,12 @@ class Authorization : AppCompatActivity() {
         login = findViewById<EditText>(R.id.editTextLogin)
         password = findViewById<EditText>(R.id.editTextTextPassword)
         pref = getSharedPreferences(MY_SETTINGS, MODE_PRIVATE)
+
+        if (pref.getBoolean("IsAuthorized", false) == true)
+        {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun SignIn(view: View) {
@@ -37,6 +43,10 @@ class Authorization : AppCompatActivity() {
                 user = User("")
             }
                 if (password.text.toString() == user.pass) {
+                    var ed = pref.edit()
+                    ed.putBoolean("IsAuthorized", true)
+                    ed.commit()
+
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 } else {
